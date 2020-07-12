@@ -21,11 +21,9 @@
 
 struct output {
 
-  /** @name - root for all file names */
-
   //@{
 
-  FileName root;
+  char root[_FILENAMESIZE_-32]; /**< root for all file names */
 
   //@}
 
@@ -33,8 +31,8 @@ struct output {
 
   //@{
 
-  int z_pk_num;
-  double z_pk[_Z_PK_NUM_MAX_];
+  int z_pk_num; /**< number of redshift at which P(k,z) and T_i(k,z) should be written */
+  double z_pk[_Z_PK_NUM_MAX_]; /**< value(s) of redshift at which P(k,z) and T_i(k,z) should be written */
 
   //@}
 
@@ -42,14 +40,14 @@ struct output {
 
   //@{
 
-  short write_header;
+  short write_header; /**< flag stating whether we should write a header in output files */
 
-  enum file_format output_format;
+  enum file_format output_format; /**< which format for output files (definitions, order of columns, etc.) */
 
-  short write_background;
-  short write_thermodynamics;
-  short write_perturbations;
-  short write_primordial;
+  short write_background; /**< flag for outputing background evolution in file */
+  short write_thermodynamics; /**< flag for outputing thermodynamical evolution in file */
+  short write_perturbations; /**< flag for outputing perturbations of selected wavenumber(s) in file(s) */
+  short write_primordial; /**< flag for outputing scalar/tensor primordial spectra in files */
 
   //@}
 
@@ -65,7 +63,7 @@ struct output {
 };
 
 /*************************************************************************************************************/
-
+/* @cond INCLUDE_WITH_DOXYGEN */
 /*
  * Boilerplate for C++
  */
@@ -104,21 +102,14 @@ extern "C" {
   int output_pk(
                 struct background * pba,
                 struct perturbs * ppt,
-                struct spectra * psp,
-                struct output * pop
+                struct nonlinear * pnl,
+                struct output * pop,
+                enum pk_outputs pk_output
                 );
-
-  int output_pk_nl(
-                   struct background * pba,
-                   struct perturbs * ppt,
-                   struct spectra * psp,
-                   struct output * pop
-                   );
 
   int output_tk(
                 struct background * pba,
                 struct perturbs * ppt,
-                struct spectra * psp,
                 struct output * pop
                 );
 
@@ -170,7 +161,7 @@ extern "C" {
 
   int output_open_pk_file(
                           struct background * pba,
-                          struct spectra * psp,
+                          struct nonlinear * pnl,
                           struct output * pop,
                           FILE ** pkfile,
                           FileName filename,
@@ -184,20 +175,9 @@ extern "C" {
                             double one_pk
                             );
 
-  int output_open_pk_nl_file(
-                             struct background * pba,
-                             struct nonlinear * pnl,
-                             struct output * pop,
-                             FILE ** pkfile,
-                             FileName filename,
-                             char * first_line,
-                             double z,
-                             int k_size
-                             );
-
-
 #ifdef __cplusplus
 }
 #endif
 
 #endif
+/* @endcond */
