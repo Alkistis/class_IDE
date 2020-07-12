@@ -1,4 +1,5 @@
-# class_IDE (based on CLASS v2.9.3)
+# class_IDE 
+### based on CLASS v2.9.3
 
 This repository contains the CLASS code for the "pure momentum transfer" coupled quintessence model first introduced in [Pourtsidou, Skordis and Copeland](https://arxiv.org/abs/1307.0458) (the so-called "Type 3" theories in that paper). For numerical results/plots also see [Pourtsidou and Tram](https://arxiv.org/abs/1604.04222), [Linton et al.](https://arxiv.org/abs/1711.05196), and [Chamings et al.](https://arxiv.org/abs/1912.09858). This version of the code is using the quadratic coupling function, $\beta Z^2$, which was shown to fit data very well in [Pourtsidou and Tram](https://arxiv.org/abs/1604.04222) and be able to alleviate the σ8 "tension".
 
