@@ -1058,8 +1058,11 @@ cdef class Class:
     def tau_reio(self):
         return self.th.tau_reio
 
+    #def Omega_m(self):
+    #    return self.ba.Omega0_m
     def Omega_m(self):
-        return self.ba.Omega0_m
+        return self.ba.Omega0_b+self.ba.Omega0_cdm
+
 
     def Omega_r(self):
         return self.ba.Omega0_r
@@ -1366,7 +1369,7 @@ cdef class Class:
         """
         Return the sum of Omega0 for all non-relativistic components
         """
-        return self.ba.Omega0_m
+        return self.ba.Omega0_b+self.ba.Omega0_cdm
 
     def get_background(self):
         """
@@ -1670,6 +1673,10 @@ cdef class Class:
                 value = self.ba.h*100
             elif name == 'Omega0_lambda' or name == 'Omega_Lambda':
                 value = self.ba.Omega0_lambda
+            elif name == 'Omega0_scf' or name == 'Omega_scf':
+                value = self.ba.Omega0_scf
+            elif name == 'w0_scf':
+                value = self.ba.background_table[(self.ba.bt_size-1)*self.ba.bg_size+self.ba.index_bg_p_scf]/self.ba.background_table[(self.ba.bt_size-1)*self.ba.bg_size+self.ba.index_bg_rho_scf]
             elif name == 'Omega0_fld':
                 value = self.ba.Omega0_fld
             elif name == 'age':
@@ -1683,9 +1690,13 @@ cdef class Class:
             elif name == 'Neff':
                 value = self.ba.Neff
             elif name == 'Omega_m':
-                value = self.ba.Omega0_m
+            #    value = self.ba.Omega0_m
+                value = self.ba.Omega0_b + self.ba.Omega0_cdm
             elif name == 'omega_m':
-                value = self.ba.Omega0_m*self.ba.h**2
+            #    value = self.ba.Omega0_m*self.ba.h**2
+                value = (self.ba.Omega0_b + self.ba.Omega0_cdm)*self.ba.h**2
+            elif name == 'scf_veta':
+                value = self.ba.scf_veta
             elif name == 'xi_idr':
                 value = self.ba.T_idr/self.ba.T_cmb
             elif name == 'N_dg':
