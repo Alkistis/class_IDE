@@ -96,6 +96,7 @@ cdef extern from "class.h":
         double z_eq
         double tau_eq
         double scf_veta
+        double scf_lambda
 
         double * background_table
 

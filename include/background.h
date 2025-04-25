@@ -101,7 +101,7 @@ struct background
   int scf_parameters_size;  /**< size of scf_parameters */
   int scf_tuning_index;     /**< index in scf_parameters used for tuning */
   double scf_veta; /** momentum transfer coupling parameter **/
-  //double scf_lambda; /**< \f$ \lambda \f$ : scalar field exponential potential slope */
+  double scf_lambda; /**< \f$ \lambda \f$ : scalar field exponential potential slope */
   //double scf_alpha;  /**< \f$ \alpha \f$ : Albrecht-Skordis polynomial slope */
   //double scf_B; /**< \f$ \alpha \f$ : Albrecht-Skordis field shift */
   //double scf_A; /**< \f$ \alpha \f$ : Albrecht-Skordis offset */

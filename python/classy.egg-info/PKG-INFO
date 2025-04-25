@@ -1,0 +1,7 @@
+Metadata-Version: 2.2
+Name: classy
+Version: 2.9.3
+Summary: Python interface to the Cosmological Boltzmann code CLASS
+Home-page: http://www.class-code.net
+Dynamic: home-page
+Dynamic: summary
